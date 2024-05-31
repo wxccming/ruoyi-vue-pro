@@ -55,30 +55,5 @@ public interface ErrorCodeConstants {
     // ========== 数据源配置 1-001-007-000 ==========
     ErrorCode DATA_SOURCE_CONFIG_NOT_EXISTS = new ErrorCode(1_001_007_000, "数据源配置不存在");
     ErrorCode DATA_SOURCE_CONFIG_NOT_OK = new ErrorCode(1_001_007_001, "数据源配置不正确，无法进行连接");
-
-    // ========== 学生 1-001-201-000 ==========
-    ErrorCode DEMO01_CONTACT_NOT_EXISTS = new ErrorCode(1_001_201_000, "示例联系人不存在");
-    ErrorCode DEMO02_CATEGORY_NOT_EXISTS = new ErrorCode(1_001_201_001, "示例分类不存在");
-    ErrorCode DEMO02_CATEGORY_EXITS_CHILDREN = new ErrorCode(1_001_201_002, "存在存在子示例分类，无法删除");
-    ErrorCode DEMO02_CATEGORY_PARENT_NOT_EXITS = new ErrorCode(1_001_201_003,"父级示例分类不存在");
-    ErrorCode DEMO02_CATEGORY_PARENT_ERROR = new ErrorCode(1_001_201_004, "不能设置自己为父示例分类");
-    ErrorCode DEMO02_CATEGORY_NAME_DUPLICATE = new ErrorCode(1_001_201_005, "已经存在该名字的示例分类");
-    ErrorCode DEMO02_CATEGORY_PARENT_IS_CHILD = new ErrorCode(1_001_201_006, "不能设置自己的子示例分类为父示例分类");
-    ErrorCode DEMO03_STUDENT_NOT_EXISTS = new ErrorCode(1_001_201_007, "学生不存在");
-    ErrorCode DEMO03_GRADE_NOT_EXISTS = new ErrorCode(1_001_201_008, "学生班级不存在");
-    ErrorCode DEMO03_GRADE_EXISTS = new ErrorCode(1_001_201_009, "学生班级已存在");
-
-    ErrorCode SOURCE_INFO_NOT_EXISTS = new ErrorCode(1_001_202_001, "资源信息不存在");
-
-    ErrorCode BOOK_CHAPTER_NOT_EXISTS = new ErrorCode(1_001_202_002, "图书章节不存在");
-
-    ErrorCode BOOK_INFO_NOT_EXISTS = new ErrorCode(1_001_202_003, "图书信息不存在");
-
-    ErrorCode BOOK_QTCODE_INFO_NOT_EXISTS = new ErrorCode(1_001_202_004, "图书二维码信息不存在");
-
-    ErrorCode BOOK_QTCODE_ITEM_NOT_EXISTS = new ErrorCode(1_001_202_005, "二维码项目不存在");
-
-    ErrorCode BOOK_QTCODE_SOURCE_NOT_EXISTS = new ErrorCode(1_001_202_006, "二维码资源不存在");
-    ErrorCode BOOK_SOURCE_SIGN_FAIL = new ErrorCode(1_001_203_001, "签名生成失败");
 }
 

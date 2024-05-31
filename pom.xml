@@ -18,6 +18,7 @@
         <module>yudao-module-bpm</module>
         <module>yudao-module-report</module>
         <module>yudao-module-erp</module>
+        <module>yudao-module-bookstore</module>
     </modules>
 
     <name>${project.artifactId}</name>
