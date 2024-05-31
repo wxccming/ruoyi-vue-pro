@@ -13,6 +13,7 @@ import cn.iocoder.yudao.module.system.service.mail.MailAccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +67,7 @@ public class MailAccountController {
     @GetMapping("/page")
     @Operation(summary = "获得邮箱账号分页")
     @PreAuthorize("@ss.hasPermission('system:mail-account:query')")
-    public CommonResult<PageResult<MailAccountRespVO>> getMailAccountPage(@Valid MailAccountPageReqVO pageReqVO) {
+    public CommonResult<PageResult<MailAccountRespVO>> getMailAccountPage(@Valid @ParameterObject MailAccountPageReqVO pageReqVO) {
         PageResult<MailAccountDO> pageResult = mailAccountService.getMailAccountPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, MailAccountRespVO.class));
     }

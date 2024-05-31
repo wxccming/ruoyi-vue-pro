@@ -11,6 +11,7 @@ import cn.iocoder.yudao.module.infra.service.file.FileConfigService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +74,7 @@ public class FileConfigController {
     @GetMapping("/page")
     @Operation(summary = "获得文件配置分页")
     @PreAuthorize("@ss.hasPermission('infra:file-config:query')")
-    public CommonResult<PageResult<FileConfigRespVO>> getFileConfigPage(@Valid FileConfigPageReqVO pageVO) {
+    public CommonResult<PageResult<FileConfigRespVO>> getFileConfigPage(@Valid @ParameterObject FileConfigPageReqVO pageVO) {
         PageResult<FileConfigDO> pageResult = fileConfigService.getFileConfigPage(pageVO);
         return success(BeanUtils.toBean(pageResult, FileConfigRespVO.class));
     }

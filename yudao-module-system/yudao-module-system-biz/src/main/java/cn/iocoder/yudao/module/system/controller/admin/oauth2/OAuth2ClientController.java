@@ -11,6 +11,7 @@ import cn.iocoder.yudao.module.system.service.oauth2.OAuth2ClientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -65,7 +66,7 @@ public class OAuth2ClientController {
     @GetMapping("/page")
     @Operation(summary = "获得 OAuth2 客户端分页")
     @PreAuthorize("@ss.hasPermission('system:oauth2-client:query')")
-    public CommonResult<PageResult<OAuth2ClientRespVO>> getOAuth2ClientPage(@Valid OAuth2ClientPageReqVO pageVO) {
+    public CommonResult<PageResult<OAuth2ClientRespVO>> getOAuth2ClientPage(@Valid @ParameterObject OAuth2ClientPageReqVO pageVO) {
         PageResult<OAuth2ClientDO> pageResult = oAuth2ClientService.getOAuth2ClientPage(pageVO);
         return success(BeanUtils.toBean(pageResult, OAuth2ClientRespVO.class));
     }

@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -90,7 +91,7 @@ public class UserController {
     @GetMapping("/page")
     @Operation(summary = "获得用户分页列表")
     @PreAuthorize("@ss.hasPermission('system:user:list')")
-    public CommonResult<PageResult<UserRespVO>> getUserPage(@Valid UserPageReqVO pageReqVO) {
+    public CommonResult<PageResult<UserRespVO>> getUserPage(@Valid @ParameterObject UserPageReqVO pageReqVO) {
         // 获得用户分页列表
         PageResult<AdminUserDO> pageResult = userService.getUserPage(pageReqVO);
         if (CollUtil.isEmpty(pageResult.getList())) {

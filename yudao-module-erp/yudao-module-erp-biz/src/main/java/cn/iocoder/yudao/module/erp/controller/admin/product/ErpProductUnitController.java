@@ -15,6 +15,7 @@ import cn.iocoder.yudao.module.erp.service.product.ErpProductUnitService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +75,7 @@ public class ErpProductUnitController {
     @GetMapping("/page")
     @Operation(summary = "获得产品单位分页")
     @PreAuthorize("@ss.hasPermission('erp:product-unit:query')")
-    public CommonResult<PageResult<ErpProductUnitRespVO>> getProductUnitPage(@Valid ErpProductUnitPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpProductUnitRespVO>> getProductUnitPage(@Valid @ParameterObject ErpProductUnitPageReqVO pageReqVO) {
         PageResult<ErpProductUnitDO> pageResult = productUnitService.getProductUnitPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, ErpProductUnitRespVO.class));
     }

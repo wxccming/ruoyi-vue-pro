@@ -23,6 +23,7 @@ import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -113,7 +114,7 @@ public class ErpStockMoveController {
     @GetMapping("/page")
     @Operation(summary = "获得库存调拨单分页")
     @PreAuthorize("@ss.hasPermission('erp:stock-move:query')")
-    public CommonResult<PageResult<ErpStockMoveRespVO>> getStockMovePage(@Valid ErpStockMovePageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpStockMoveRespVO>> getStockMovePage(@Valid @ParameterObject ErpStockMovePageReqVO pageReqVO) {
         PageResult<ErpStockMoveDO> pageResult = stockMoveService.getStockMovePage(pageReqVO);
         return success(buildStockMoveVOPageResult(pageResult));
     }

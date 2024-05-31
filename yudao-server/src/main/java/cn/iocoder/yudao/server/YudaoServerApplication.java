@@ -1,5 +1,6 @@
 package cn.iocoder.yudao.server;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,10 +10,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SuppressWarnings("SpringComponentScan") // 忽略 IDEA 无法识别 ${yudao.info.base-package}
 @SpringBootApplication(scanBasePackages = {"${yudao.info.base-package}.server", "${yudao.info.base-package}.module"})
+@Slf4j
 public class YudaoServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(YudaoServerApplication.class, args);
+            try{
+                SpringApplication.run(YudaoServerApplication.class, args);
+            }catch (Exception e){
+                log.error("服务启动异常,容器退出，异常信息如下：", e);
+                System.exit(-1);
+            }
     }
 
 }

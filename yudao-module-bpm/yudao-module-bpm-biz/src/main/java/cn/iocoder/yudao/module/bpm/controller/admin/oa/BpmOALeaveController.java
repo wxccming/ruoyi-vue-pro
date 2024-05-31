@@ -11,6 +11,7 @@ import cn.iocoder.yudao.module.bpm.service.oa.BpmOALeaveService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +56,7 @@ public class BpmOALeaveController {
     @GetMapping("/page")
     @PreAuthorize("@ss.hasPermission('bpm:oa-leave:query')")
     @Operation(summary = "获得请假申请分页")
-    public CommonResult<PageResult<BpmOALeaveRespVO>> getLeavePage(@Valid BpmOALeavePageReqVO pageVO) {
+    public CommonResult<PageResult<BpmOALeaveRespVO>> getLeavePage(@Valid @ParameterObject BpmOALeavePageReqVO pageVO) {
         PageResult<BpmOALeaveDO> pageResult = leaveService.getLeavePage(getLoginUserId(), pageVO);
         return success(BeanUtils.toBean(pageResult, BpmOALeaveRespVO.class));
     }

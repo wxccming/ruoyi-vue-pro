@@ -12,6 +12,7 @@ import cn.iocoder.yudao.module.system.service.sms.SmsChannelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +67,7 @@ public class SmsChannelController {
     @GetMapping("/page")
     @Operation(summary = "获得短信渠道分页")
     @PreAuthorize("@ss.hasPermission('system:sms-channel:query')")
-    public CommonResult<PageResult<SmsChannelRespVO>> getSmsChannelPage(@Valid SmsChannelPageReqVO pageVO) {
+    public CommonResult<PageResult<SmsChannelRespVO>> getSmsChannelPage(@Valid @ParameterObject SmsChannelPageReqVO pageVO) {
         PageResult<SmsChannelDO> pageResult = smsChannelService.getSmsChannelPage(pageVO);
         return success(BeanUtils.toBean(pageResult, SmsChannelRespVO.class));
     }

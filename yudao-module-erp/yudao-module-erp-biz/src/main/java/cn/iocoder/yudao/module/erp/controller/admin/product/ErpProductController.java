@@ -15,6 +15,7 @@ import cn.iocoder.yudao.module.erp.service.product.ErpProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +75,7 @@ public class ErpProductController {
     @GetMapping("/page")
     @Operation(summary = "获得产品分页")
     @PreAuthorize("@ss.hasPermission('erp:product:query')")
-    public CommonResult<PageResult<ErpProductRespVO>> getProductPage(@Valid ErpProductPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpProductRespVO>> getProductPage(@Valid @ParameterObject ErpProductPageReqVO pageReqVO) {
         return success(productService.getProductVOPage(pageReqVO));
     }
 

@@ -13,6 +13,7 @@ import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,7 +72,7 @@ public class SmsTemplateController {
     @GetMapping("/page")
     @Operation(summary = "获得短信模板分页")
     @PreAuthorize("@ss.hasPermission('system:sms-template:query')")
-    public CommonResult<PageResult<SmsTemplateRespVO>> getSmsTemplatePage(@Valid SmsTemplatePageReqVO pageVO) {
+    public CommonResult<PageResult<SmsTemplateRespVO>> getSmsTemplatePage(@Valid @ParameterObject SmsTemplatePageReqVO pageVO) {
         PageResult<SmsTemplateDO> pageResult = smsTemplateService.getSmsTemplatePage(pageVO);
         return success(BeanUtils.toBean(pageResult, SmsTemplateRespVO.class));
     }

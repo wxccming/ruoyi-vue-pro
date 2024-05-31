@@ -15,6 +15,7 @@ import cn.iocoder.yudao.module.erp.service.sale.ErpCustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +75,7 @@ public class ErpCustomerController {
     @GetMapping("/page")
     @Operation(summary = "获得客户分页")
     @PreAuthorize("@ss.hasPermission('erp:customer:query')")
-    public CommonResult<PageResult<ErpCustomerRespVO>> getCustomerPage(@Valid ErpCustomerPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpCustomerRespVO>> getCustomerPage(@Valid @ParameterObject ErpCustomerPageReqVO pageReqVO) {
         PageResult<ErpCustomerDO> pageResult = customerService.getCustomerPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, ErpCustomerRespVO.class));
     }

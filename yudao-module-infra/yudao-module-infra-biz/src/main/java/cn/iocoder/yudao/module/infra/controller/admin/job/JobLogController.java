@@ -13,6 +13,7 @@ import cn.iocoder.yudao.module.infra.service.job.JobLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +51,7 @@ public class JobLogController {
     @GetMapping("/page")
     @Operation(summary = "获得定时任务日志分页")
     @PreAuthorize("@ss.hasPermission('infra:job:query')")
-    public CommonResult<PageResult<JobLogRespVO>> getJobLogPage(@Valid JobLogPageReqVO pageVO) {
+    public CommonResult<PageResult<JobLogRespVO>> getJobLogPage(@Valid @ParameterObject JobLogPageReqVO pageVO) {
         PageResult<JobLogDO> pageResult = jobLogService.getJobLogPage(pageVO);
         return success(BeanUtils.toBean(pageResult, JobLogRespVO.class));
     }

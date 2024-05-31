@@ -12,6 +12,7 @@ import cn.iocoder.yudao.module.infra.dal.dataobject.logger.ApiAccessLogDO;
 import cn.iocoder.yudao.module.infra.service.logger.ApiAccessLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class ApiAccessLogController {
     @GetMapping("/page")
     @Operation(summary = "获得API 访问日志分页")
     @PreAuthorize("@ss.hasPermission('infra:api-access-log:query')")
-    public CommonResult<PageResult<ApiAccessLogRespVO>> getApiAccessLogPage(@Valid ApiAccessLogPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ApiAccessLogRespVO>> getApiAccessLogPage(@Valid @ParameterObject ApiAccessLogPageReqVO pageReqVO) {
         PageResult<ApiAccessLogDO> pageResult = apiAccessLogService.getApiAccessLogPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, ApiAccessLogRespVO.class));
     }

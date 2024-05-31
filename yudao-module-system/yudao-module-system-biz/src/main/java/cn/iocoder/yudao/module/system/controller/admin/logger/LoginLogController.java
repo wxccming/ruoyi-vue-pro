@@ -12,6 +12,7 @@ import cn.iocoder.yudao.module.system.dal.dataobject.logger.LoginLogDO;
 import cn.iocoder.yudao.module.system.service.logger.LoginLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class LoginLogController {
     @GetMapping("/page")
     @Operation(summary = "获得登录日志分页列表")
     @PreAuthorize("@ss.hasPermission('system:login-log:query')")
-    public CommonResult<PageResult<LoginLogRespVO>> getLoginLogPage(@Valid LoginLogPageReqVO pageReqVO) {
+    public CommonResult<PageResult<LoginLogRespVO>> getLoginLogPage(@Valid @ParameterObject LoginLogPageReqVO pageReqVO) {
         PageResult<LoginLogDO> pageResult = loginLogService.getLoginLogPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, LoginLogRespVO.class));
     }

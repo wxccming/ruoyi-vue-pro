@@ -24,6 +24,7 @@ import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -116,7 +117,7 @@ public class ErpSaleOrderController {
     @GetMapping("/page")
     @Operation(summary = "获得销售订单分页")
     @PreAuthorize("@ss.hasPermission('erp:sale-out:query')")
-    public CommonResult<PageResult<ErpSaleOrderRespVO>> getSaleOrderPage(@Valid ErpSaleOrderPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpSaleOrderRespVO>> getSaleOrderPage(@Valid @ParameterObject ErpSaleOrderPageReqVO pageReqVO) {
         PageResult<ErpSaleOrderDO> pageResult = saleOrderService.getSaleOrderPage(pageReqVO);
         return success(buildSaleOrderVOPageResult(pageResult));
     }

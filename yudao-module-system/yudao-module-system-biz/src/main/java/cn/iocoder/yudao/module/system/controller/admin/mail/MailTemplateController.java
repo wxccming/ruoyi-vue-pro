@@ -10,6 +10,7 @@ import cn.iocoder.yudao.module.system.service.mail.MailTemplateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +67,7 @@ public class MailTemplateController {
     @GetMapping("/page")
     @Operation(summary = "获得邮件模版分页")
     @PreAuthorize("@ss.hasPermission('system:mail-template:query')")
-    public CommonResult<PageResult<MailTemplateRespVO>> getMailTemplatePage(@Valid MailTemplatePageReqVO pageReqVO) {
+    public CommonResult<PageResult<MailTemplateRespVO>> getMailTemplatePage(@Valid @ParameterObject MailTemplatePageReqVO pageReqVO) {
         PageResult<MailTemplateDO> pageResult = mailTempleService.getMailTemplatePage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, MailTemplateRespVO.class));
     }

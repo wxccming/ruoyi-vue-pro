@@ -25,6 +25,7 @@ import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -117,7 +118,7 @@ public class ErpStockInController {
     @GetMapping("/page")
     @Operation(summary = "获得其它入库单分页")
     @PreAuthorize("@ss.hasPermission('erp:stock-in:query')")
-    public CommonResult<PageResult<ErpStockInRespVO>> getStockInPage(@Valid ErpStockInPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpStockInRespVO>> getStockInPage(@Valid @ParameterObject ErpStockInPageReqVO pageReqVO) {
         PageResult<ErpStockInDO> pageResult = stockInService.getStockInPage(pageReqVO);
         return success(buildStockInVOPageResult(pageResult));
     }

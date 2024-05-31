@@ -12,6 +12,7 @@ import cn.iocoder.yudao.module.system.service.oauth2.OAuth2TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class OAuth2TokenController {
     @GetMapping("/page")
     @Operation(summary = "获得访问令牌分页", description = "只返回有效期内的")
     @PreAuthorize("@ss.hasPermission('system:oauth2-token:page')")
-    public CommonResult<PageResult<OAuth2AccessTokenRespVO>> getAccessTokenPage(@Valid OAuth2AccessTokenPageReqVO reqVO) {
+    public CommonResult<PageResult<OAuth2AccessTokenRespVO>> getAccessTokenPage(@Valid @ParameterObject OAuth2AccessTokenPageReqVO reqVO) {
         PageResult<OAuth2AccessTokenDO> pageResult = oauth2TokenService.getAccessTokenPage(reqVO);
         return success(BeanUtils.toBean(pageResult, OAuth2AccessTokenRespVO.class));
     }

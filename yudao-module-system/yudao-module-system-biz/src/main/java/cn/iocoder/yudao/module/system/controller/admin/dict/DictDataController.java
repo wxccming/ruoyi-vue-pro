@@ -16,6 +16,7 @@ import cn.iocoder.yudao.module.system.service.dict.DictDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -75,7 +76,7 @@ public class DictDataController {
     @GetMapping("/page")
     @Operation(summary = "/获得字典类型的分页列表")
     @PreAuthorize("@ss.hasPermission('system:dict:query')")
-    public CommonResult<PageResult<DictDataRespVO>> getDictTypePage(@Valid DictDataPageReqVO pageReqVO) {
+    public CommonResult<PageResult<DictDataRespVO>> getDictTypePage(@Valid @ParameterObject DictDataPageReqVO pageReqVO) {
         PageResult<DictDataDO> pageResult = dictDataService.getDictDataPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, DictDataRespVO.class));
     }

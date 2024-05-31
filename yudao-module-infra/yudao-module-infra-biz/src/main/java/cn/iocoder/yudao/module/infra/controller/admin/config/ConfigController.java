@@ -5,7 +5,9 @@ import cn.iocoder.yudao.framework.common.pojo.CommonResult;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.excel.core.util.ExcelUtils;
-import cn.iocoder.yudao.module.infra.controller.admin.config.vo.*;
+import cn.iocoder.yudao.module.infra.controller.admin.config.vo.ConfigPageReqVO;
+import cn.iocoder.yudao.module.infra.controller.admin.config.vo.ConfigRespVO;
+import cn.iocoder.yudao.module.infra.controller.admin.config.vo.ConfigSaveReqVO;
 import cn.iocoder.yudao.module.infra.convert.config.ConfigConvert;
 import cn.iocoder.yudao.module.infra.dal.dataobject.config.ConfigDO;
 import cn.iocoder.yudao.module.infra.enums.ErrorCodeConstants;
@@ -13,6 +15,7 @@ import cn.iocoder.yudao.module.infra.service.config.ConfigService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -85,7 +88,7 @@ public class ConfigController {
     @GetMapping("/page")
     @Operation(summary = "获取参数配置分页")
     @PreAuthorize("@ss.hasPermission('infra:config:query')")
-    public CommonResult<PageResult<ConfigRespVO>> getConfigPage(@Valid ConfigPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ConfigRespVO>> getConfigPage(@Valid @ParameterObject ConfigPageReqVO pageReqVO) {
         PageResult<ConfigDO> page = configService.getConfigPage(pageReqVO);
         return success(ConfigConvert.INSTANCE.convertPage(page));
     }

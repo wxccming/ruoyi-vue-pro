@@ -68,7 +68,7 @@ public class GoViewProjectController {
     @GetMapping("/my-page")
     @Operation(summary = "获得我的项目分页")
     @PreAuthorize("@ss.hasPermission('report:go-view-project:query')")
-    public CommonResult<PageResult<GoViewProjectRespVO>> getMyProjectPage(@Valid PageParam pageVO) {
+    public CommonResult<PageResult<GoViewProjectRespVO>> getMyProjectPage(@Valid @ParameterObject PageParam pageVO) {
         PageResult<GoViewProjectDO> pageResult = goViewProjectService.getMyProjectPage(
                 pageVO, getLoginUserId());
         return success(GoViewProjectConvert.INSTANCE.convertPage(pageResult));

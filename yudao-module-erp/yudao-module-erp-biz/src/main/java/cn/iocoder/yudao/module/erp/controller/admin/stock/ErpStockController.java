@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,7 +78,7 @@ public class ErpStockController {
     @GetMapping("/page")
     @Operation(summary = "获得产品库存分页")
     @PreAuthorize("@ss.hasPermission('erp:stock:query')")
-    public CommonResult<PageResult<ErpStockRespVO>> getStockPage(@Valid ErpStockPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpStockRespVO>> getStockPage(@Valid @ParameterObject ErpStockPageReqVO pageReqVO) {
         PageResult<ErpStockDO> pageResult = stockService.getStockPage(pageReqVO);
         return success(buildStockVOPageResult(pageResult));
     }

@@ -25,6 +25,7 @@ import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -117,7 +118,7 @@ public class ErpStockOutController {
     @GetMapping("/page")
     @Operation(summary = "获得其它出库单分页")
     @PreAuthorize("@ss.hasPermission('erp:stock-out:query')")
-    public CommonResult<PageResult<ErpStockOutRespVO>> getStockOutPage(@Valid ErpStockOutPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpStockOutRespVO>> getStockOutPage(@Valid @ParameterObject ErpStockOutPageReqVO pageReqVO) {
         PageResult<ErpStockOutDO> pageResult = stockOutService.getStockOutPage(pageReqVO);
         return success(buildStockOutVOPageResult(pageResult));
     }

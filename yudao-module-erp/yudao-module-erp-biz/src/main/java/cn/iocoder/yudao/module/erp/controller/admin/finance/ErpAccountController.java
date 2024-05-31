@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -95,7 +96,7 @@ public class ErpAccountController {
     @GetMapping("/page")
     @Operation(summary = "获得结算账户分页")
     @PreAuthorize("@ss.hasPermission('erp:account:query')")
-    public CommonResult<PageResult<ErpAccountRespVO>> getAccountPage(@Valid ErpAccountPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpAccountRespVO>> getAccountPage(@Valid @ParameterObject ErpAccountPageReqVO pageReqVO) {
         PageResult<ErpAccountDO> pageResult = accountService.getAccountPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, ErpAccountRespVO.class));
     }

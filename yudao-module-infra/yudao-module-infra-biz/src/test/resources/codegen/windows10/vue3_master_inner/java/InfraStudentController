@@ -76,7 +76,7 @@ public class InfraStudentController {
     @GetMapping("/page")
     @Operation(summary = "获得学生分页")
     @PreAuthorize("@ss.hasPermission('infra:student:query')")
-    public CommonResult<PageResult<InfraStudentRespVO>> getStudentPage(@Valid InfraStudentPageReqVO pageReqVO) {
+    public CommonResult<PageResult<InfraStudentRespVO>> getStudentPage(@Valid @ParameterObject InfraStudentPageReqVO pageReqVO) {
         PageResult<InfraStudentDO> pageResult = studentService.getStudentPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, InfraStudentRespVO.class));
     }

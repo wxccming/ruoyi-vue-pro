@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +74,7 @@ public class CodegenController {
     @GetMapping("/table/page")
     @Operation(summary = "获得表定义分页")
     @PreAuthorize("@ss.hasPermission('infra:codegen:query')")
-    public CommonResult<PageResult<CodegenTableRespVO>> getCodegenTablePage(@Valid CodegenTablePageReqVO pageReqVO) {
+    public CommonResult<PageResult<CodegenTableRespVO>> getCodegenTablePage(@Valid @ParameterObject CodegenTablePageReqVO pageReqVO) {
         PageResult<CodegenTableDO> pageResult = codegenService.getCodegenTablePage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, CodegenTableRespVO.class));
     }

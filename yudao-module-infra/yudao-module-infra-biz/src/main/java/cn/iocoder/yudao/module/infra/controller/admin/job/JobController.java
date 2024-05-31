@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.quartz.SchedulerException;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -110,7 +111,7 @@ public class JobController {
     @GetMapping("/page")
     @Operation(summary = "获得定时任务分页")
     @PreAuthorize("@ss.hasPermission('infra:job:query')")
-    public CommonResult<PageResult<JobRespVO>> getJobPage(@Valid JobPageReqVO pageVO) {
+    public CommonResult<PageResult<JobRespVO>> getJobPage(@Valid @ParameterObject JobPageReqVO pageVO) {
         PageResult<JobDO> pageResult = jobService.getJobPage(pageVO);
         return success(BeanUtils.toBean(pageResult, JobRespVO.class));
     }

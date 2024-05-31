@@ -15,6 +15,7 @@ import cn.iocoder.yudao.module.system.service.tenant.TenantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -90,7 +91,7 @@ public class TenantController {
     @GetMapping("/page")
     @Operation(summary = "获得租户分页")
     @PreAuthorize("@ss.hasPermission('system:tenant:query')")
-    public CommonResult<PageResult<TenantRespVO>> getTenantPage(@Valid TenantPageReqVO pageVO) {
+    public CommonResult<PageResult<TenantRespVO>> getTenantPage(@Valid @ParameterObject TenantPageReqVO pageVO) {
         PageResult<TenantDO> pageResult = tenantService.getTenantPage(pageVO);
         return success(BeanUtils.toBean(pageResult, TenantRespVO.class));
     }

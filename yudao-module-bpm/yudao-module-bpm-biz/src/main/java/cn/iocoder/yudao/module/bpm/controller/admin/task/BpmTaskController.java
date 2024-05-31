@@ -22,6 +22,7 @@ import org.flowable.engine.history.HistoricProcessInstance;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 import org.flowable.task.api.history.HistoricTaskInstance;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -59,7 +60,7 @@ public class BpmTaskController {
     @GetMapping("todo-page")
     @Operation(summary = "获取 Todo 待办任务分页")
     @PreAuthorize("@ss.hasPermission('bpm:task:query')")
-    public CommonResult<PageResult<BpmTaskRespVO>> getTaskTodoPage(@Valid BpmTaskPageReqVO pageVO) {
+    public CommonResult<PageResult<BpmTaskRespVO>> getTaskTodoPage(@Valid @ParameterObject BpmTaskPageReqVO pageVO) {
         PageResult<Task> pageResult = taskService.getTaskTodoPage(getLoginUserId(), pageVO);
         if (CollUtil.isEmpty(pageResult.getList())) {
             return success(PageResult.empty());
@@ -76,7 +77,7 @@ public class BpmTaskController {
     @GetMapping("done-page")
     @Operation(summary = "获取 Done 已办任务分页")
     @PreAuthorize("@ss.hasPermission('bpm:task:query')")
-    public CommonResult<PageResult<BpmTaskRespVO>> getTaskDonePage(@Valid BpmTaskPageReqVO pageVO) {
+    public CommonResult<PageResult<BpmTaskRespVO>> getTaskDonePage(@Valid @ParameterObject BpmTaskPageReqVO pageVO) {
         PageResult<HistoricTaskInstance> pageResult = taskService.getTaskDonePage(getLoginUserId(), pageVO);
         if (CollUtil.isEmpty(pageResult.getList())) {
             return success(PageResult.empty());
@@ -93,7 +94,7 @@ public class BpmTaskController {
     @GetMapping("manager-page")
     @Operation(summary = "获取全部任务的分页", description = "用于【流程任务】菜单")
     @PreAuthorize("@ss.hasPermission('bpm:task:mananger-query')")
-    public CommonResult<PageResult<BpmTaskRespVO>> getTaskManagerPage(@Valid BpmTaskPageReqVO pageVO) {
+    public CommonResult<PageResult<BpmTaskRespVO>> getTaskManagerPage(@Valid @ParameterObject BpmTaskPageReqVO pageVO) {
         PageResult<HistoricTaskInstance> pageResult = taskService.getTaskPage(getLoginUserId(), pageVO);
         if (CollUtil.isEmpty(pageResult.getList())) {
             return success(PageResult.empty());

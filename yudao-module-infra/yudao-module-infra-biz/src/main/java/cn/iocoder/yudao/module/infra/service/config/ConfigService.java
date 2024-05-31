@@ -4,6 +4,7 @@ import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.module.infra.controller.admin.config.vo.ConfigPageReqVO;
 import cn.iocoder.yudao.module.infra.controller.admin.config.vo.ConfigSaveReqVO;
 import cn.iocoder.yudao.module.infra.dal.dataobject.config.ConfigDO;
+import org.springdoc.api.annotations.ParameterObject;
 
 import javax.validation.Valid;
 
@@ -58,6 +59,6 @@ public interface ConfigService {
      * @param reqVO 分页条件
      * @return 分页列表
      */
-    PageResult<ConfigDO> getConfigPage(@Valid ConfigPageReqVO reqVO);
+    PageResult<ConfigDO> getConfigPage(@Valid @ParameterObject ConfigPageReqVO reqVO);
 
 }

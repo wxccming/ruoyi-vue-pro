@@ -13,6 +13,7 @@ import cn.iocoder.yudao.module.system.service.notify.NotifyMessageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +48,7 @@ public class NotifyMessageController {
     @GetMapping("/page")
     @Operation(summary = "获得站内信分页")
     @PreAuthorize("@ss.hasPermission('system:notify-message:query')")
-    public CommonResult<PageResult<NotifyMessageRespVO>> getNotifyMessagePage(@Valid NotifyMessagePageReqVO pageVO) {
+    public CommonResult<PageResult<NotifyMessageRespVO>> getNotifyMessagePage(@Valid @ParameterObject NotifyMessagePageReqVO pageVO) {
         PageResult<NotifyMessageDO> pageResult = notifyMessageService.getNotifyMessagePage(pageVO);
         return success(BeanUtils.toBean(pageResult, NotifyMessageRespVO.class));
     }
@@ -56,7 +57,7 @@ public class NotifyMessageController {
 
     @GetMapping("/my-page")
     @Operation(summary = "获得我的站内信分页")
-    public CommonResult<PageResult<NotifyMessageRespVO>> getMyMyNotifyMessagePage(@Valid NotifyMessageMyPageReqVO pageVO) {
+    public CommonResult<PageResult<NotifyMessageRespVO>> getMyMyNotifyMessagePage(@Valid @ParameterObject NotifyMessageMyPageReqVO pageVO) {
         PageResult<NotifyMessageDO> pageResult = notifyMessageService.getMyMyNotifyMessagePage(pageVO,
                 getLoginUserId(), UserTypeEnum.ADMIN.getValue());
         return success(BeanUtils.toBean(pageResult, NotifyMessageRespVO.class));

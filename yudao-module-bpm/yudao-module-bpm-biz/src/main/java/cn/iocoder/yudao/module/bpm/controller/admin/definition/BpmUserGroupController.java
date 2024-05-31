@@ -12,6 +12,7 @@ import cn.iocoder.yudao.module.bpm.service.definition.BpmUserGroupService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -68,7 +69,7 @@ public class BpmUserGroupController {
     @GetMapping("/page")
     @Operation(summary = "获得用户组分页")
     @PreAuthorize("@ss.hasPermission('bpm:user-group:query')")
-    public CommonResult<PageResult<BpmUserGroupRespVO>> getUserGroupPage(@Valid BpmUserGroupPageReqVO pageVO) {
+    public CommonResult<PageResult<BpmUserGroupRespVO>> getUserGroupPage(@Valid @ParameterObject BpmUserGroupPageReqVO pageVO) {
         PageResult<BpmUserGroupDO> pageResult = userGroupService.getUserGroupPage(pageVO);
         return success(BeanUtils.toBean(pageResult, BpmUserGroupRespVO.class));
     }

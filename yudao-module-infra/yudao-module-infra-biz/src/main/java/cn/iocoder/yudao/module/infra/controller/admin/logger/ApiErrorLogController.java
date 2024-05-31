@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +54,7 @@ public class ApiErrorLogController {
     @GetMapping("/page")
     @Operation(summary = "获得 API 错误日志分页")
     @PreAuthorize("@ss.hasPermission('infra:api-error-log:query')")
-    public CommonResult<PageResult<ApiErrorLogRespVO>> getApiErrorLogPage(@Valid ApiErrorLogPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ApiErrorLogRespVO>> getApiErrorLogPage(@Valid @ParameterObject ApiErrorLogPageReqVO pageReqVO) {
         PageResult<ApiErrorLogDO> pageResult = apiErrorLogService.getApiErrorLogPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, ApiErrorLogRespVO.class));
     }

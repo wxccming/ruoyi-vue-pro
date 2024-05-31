@@ -25,6 +25,7 @@ import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -117,7 +118,7 @@ public class ErpSaleReturnController {
     @GetMapping("/page")
     @Operation(summary = "获得销售退货分页")
     @PreAuthorize("@ss.hasPermission('erp:sale-return:query')")
-    public CommonResult<PageResult<ErpSaleReturnRespVO>> getSaleReturnPage(@Valid ErpSaleReturnPageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpSaleReturnRespVO>> getSaleReturnPage(@Valid @ParameterObject ErpSaleReturnPageReqVO pageReqVO) {
         PageResult<ErpSaleReturnDO> pageResult = saleReturnService.getSaleReturnPage(pageReqVO);
         return success(buildSaleReturnVOPageResult(pageResult));
     }

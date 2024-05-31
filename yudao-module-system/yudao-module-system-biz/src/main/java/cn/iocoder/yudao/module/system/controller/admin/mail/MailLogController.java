@@ -10,6 +10,7 @@ import cn.iocoder.yudao.module.system.service.mail.MailLogService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class MailLogController {
     @GetMapping("/page")
     @Operation(summary = "获得邮箱日志分页")
     @PreAuthorize("@ss.hasPermission('system:mail-log:query')")
-    public CommonResult<PageResult<MailLogRespVO>> getMailLogPage(@Valid MailLogPageReqVO pageVO) {
+    public CommonResult<PageResult<MailLogRespVO>> getMailLogPage(@Valid @ParameterObject MailLogPageReqVO pageVO) {
         PageResult<MailLogDO> pageResult = mailLogService.getMailLogPage(pageVO);
         return success(BeanUtils.toBean(pageResult, MailLogRespVO.class));
     }

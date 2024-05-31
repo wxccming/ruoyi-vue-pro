@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -87,7 +88,7 @@ public class ErpWarehouseController {
     @GetMapping("/page")
     @Operation(summary = "获得仓库分页")
     @PreAuthorize("@ss.hasPermission('erp:warehouse:query')")
-    public CommonResult<PageResult<ErpWarehouseRespVO>> getWarehousePage(@Valid ErpWarehousePageReqVO pageReqVO) {
+    public CommonResult<PageResult<ErpWarehouseRespVO>> getWarehousePage(@Valid @ParameterObject ErpWarehousePageReqVO pageReqVO) {
         PageResult<ErpWarehouseDO> pageResult = warehouseService.getWarehousePage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, ErpWarehouseRespVO.class));
     }

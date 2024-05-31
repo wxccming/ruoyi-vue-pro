@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -95,7 +96,7 @@ public class FileController {
     @GetMapping("/page")
     @Operation(summary = "获得文件分页")
     @PreAuthorize("@ss.hasPermission('infra:file:query')")
-    public CommonResult<PageResult<FileRespVO>> getFilePage(@Valid FilePageReqVO pageVO) {
+    public CommonResult<PageResult<FileRespVO>> getFilePage(@Valid @ParameterObject FilePageReqVO pageVO) {
         PageResult<FileDO> pageResult = fileService.getFilePage(pageVO);
         return success(BeanUtils.toBean(pageResult, FileRespVO.class));
     }
