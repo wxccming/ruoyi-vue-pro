@@ -249,17 +249,5 @@ yudao:
 #    prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
 #    timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
 
-# OSS相关配置信息
-aliyun:
-  oss:
-    endpoint: oss-cn-beijing.aliyuncs.com # oss对外服务的访问域名
-    accessKeyId: LTAI5tCNaNWXYGFeoR2u4rhh # 访问身份验证中用到用户标识
-    accessKeySecret: Fehe8npVyFYaQoDLo1uJwozNuS2zkV # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
-    bucketName: syxt-aliyun-oss-bucket # oss的存储空间
-    policyExpire: 3600 # 签名有效期(S)
-    maxSize: 5000 # 上传文件大小(M)
 
-    #   需要外网地址
-    callback: http://XXXX/aliyun/oss/callback
-    dirPrefix: xhsd/book/resource/   # 上传文件夹路径前缀
 
