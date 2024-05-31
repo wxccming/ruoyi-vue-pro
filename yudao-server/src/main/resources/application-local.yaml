@@ -9,9 +9,9 @@ spring:
     exclude:
       - com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure # 排除 Druid 的自动配置，使用 dynamic-datasource-spring-boot-starter 配置多数据源
       - org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration # 默认 local 环境，不开启 Quartz 的自动配置
-      - de.codecentric.boot.admin.server.config.AdminServerAutoConfiguration # 禁用 Spring Boot Admin 的 Server 的自动配置
-      - de.codecentric.boot.admin.server.ui.config.AdminServerUiAutoConfiguration # 禁用 Spring Boot Admin 的 Server UI 的自动配置
-      - de.codecentric.boot.admin.client.config.SpringBootAdminClientAutoConfiguration # 禁用 Spring Boot Admin 的 Client 的自动配置
+#      - de.codecentric.boot.admin.server.config.AdminServerAutoConfiguration # 禁用 Spring Boot Admin 的 Server 的自动配置
+#      - de.codecentric.boot.admin.server.ui.config.AdminServerUiAutoConfiguration # 禁用 Spring Boot Admin 的 Server UI 的自动配置
+#      - de.codecentric.boot.admin.client.config.SpringBootAdminClientAutoConfiguration # 禁用 Spring Boot Admin 的 Client 的自动配置
   datasource:
     druid: # Druid 【监控】相关的全局配置
       web-stat-filter:
@@ -47,7 +47,7 @@ spring:
       primary: master
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          url: jdbc:mysql://111.231.60.214:3399/uadp?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
           #          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=true&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai # MySQL Connector/J 5.X 连接的示例
           #          url: jdbc:postgresql://127.0.0.1:5432/ruoyi-vue-pro # PostgreSQL 连接的示例
           #          url: jdbc:oracle:thin:@127.0.0.1:1521:xe # Oracle 连接的示例
@@ -61,13 +61,13 @@ spring:
         #          password: SYSDBA001 # DM 连接的示例
         slave: # 模拟从库，可根据自己需要修改
           lazy: true # 开启懒加载，保证启动速度
-          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+          url: jdbc:mysql://111.231.60.214:3399/uadp?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
           username: root
           password: 123456
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   redis:
-    host: 127.0.0.1 # 地址
+    host: 111.231.60.214 # 地址
     port: 6379 # 端口
     database: 0 # 数据库索引
 #    password: dev # 密码，建议生产环境开启
@@ -106,19 +106,19 @@ spring:
 --- #################### 消息队列相关 ####################
 
 # rocketmq 配置项，对应 RocketMQProperties 配置类
-rocketmq:
-  name-server: 127.0.0.1:9876 # RocketMQ Namesrv
+#rocketmq:
+#  name-server: 127.0.0.1:9876 # RocketMQ Namesrv
 
-spring:
-  # RabbitMQ 配置项，对应 RabbitProperties 配置类
-  rabbitmq:
-    host: 127.0.0.1 # RabbitMQ 服务的地址
-    port: 5672 # RabbitMQ 服务的端口
-    username: rabbit # RabbitMQ 服务的账号
-    password: rabbit # RabbitMQ 服务的密码
-  # Kafka 配置项，对应 KafkaProperties 配置类
-  kafka:
-    bootstrap-servers: 127.0.0.1:9092 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
+#spring:
+#  # RabbitMQ 配置项，对应 RabbitProperties 配置类
+#  rabbitmq:
+#    host: 127.0.0.1 # RabbitMQ 服务的地址
+#    port: 5672 # RabbitMQ 服务的端口
+#    username: rabbit # RabbitMQ 服务的账号
+#    password: rabbit # RabbitMQ 服务的密码
+#  # Kafka 配置项，对应 KafkaProperties 配置类
+#  kafka:
+#    bootstrap-servers: 127.0.0.1:9092 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
 
 --- #################### 服务保障相关配置 ####################
 
@@ -201,9 +201,9 @@ wx:
       key-prefix: wa # Redis Key 的前缀
       http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
 
---- #################### 芋道相关配置 ####################
+--- #################### 相关配置 ####################
 
-# 芋道配置项，设置当前项目所有自定义的配置
+# 设置当前项目所有自定义的配置
 yudao:
   captcha:
     enable: false # 本地环境，暂时关闭图片验证码，方便登录等接口的测试；
@@ -214,38 +214,52 @@ yudao:
     exclude-urls: # 如下两个 url，仅仅是为了演示，去掉配置也没关系
       - ${spring.boot.admin.context-path}/** # 不处理 Spring Boot Admin 的请求
       - ${management.endpoints.web.base-path}/** # 不处理 Actuator 的请求
-  pay:
-    order-notify-url: http://yunai.natapp1.cc/admin-api/pay/notify/order # 支付渠道的【支付】回调地址
-    refund-notify-url: http://yunai.natapp1.cc/admin-api/pay/notify/refund # 支付渠道的【退款】回调地址
+#  pay:
+#    order-notify-url: http://yunai.natapp1.cc/admin-api/pay/notify/order # 支付渠道的【支付】回调地址
+#    refund-notify-url: http://yunai.natapp1.cc/admin-api/pay/notify/refund # 支付渠道的【退款】回调地址
   access-log: # 访问日志的配置项
     enable: false
   demo: false # 关闭演示模式
   tencent-lbs-key: TVDBZ-TDILD-4ON4B-PFDZA-RNLKH-VVF6E # QQ 地图的密钥 https://lbs.qq.com/service/staticV2/staticGuide/staticDoc
 
-justauth:
-  enabled: true
-  type:
-    DINGTALK: # 钉钉
-      client-id: dingvrnreaje3yqvzhxg
-      client-secret: i8E6iZyDvZj51JIb0tYsYfVQYOks9Cq1lgryEjFRqC79P3iJcrxEwT6Qk2QvLrLI
-      ignore-check-redirect-uri: true
-    WECHAT_ENTERPRISE: # 企业微信
-      client-id: wwd411c69a39ad2e54
-      client-secret: 1wTb7hYxnpT2TUbIeHGXGo7T0odav1ic10mLdyyATOw
-      agent-id: 1000004
-      ignore-check-redirect-uri: true
-    # noinspection SpringBootApplicationYaml
-    WECHAT_MINI_APP: # 微信小程序
-      client-id: ${wx.miniapp.appid}
-      client-secret: ${wx.miniapp.secret}
-      ignore-check-redirect-uri: true
-      ignore-check-state: true # 微信小程序，不会使用到 state，所以不进行校验
-    WECHAT_MP: # 微信公众号
-      client-id: ${wx.mp.app-id}
-      client-secret: ${wx.mp.secret}
-      ignore-check-redirect-uri: true
-  cache:
-    type: REDIS
-    prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
-    timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
+#justauth:
+#  enabled: false
+#  type:
+#    DINGTALK: # 钉钉
+#      client-id: dingvrnreaje3yqvzhxg
+#      client-secret: i8E6iZyDvZj51JIb0tYsYfVQYOks9Cq1lgryEjFRqC79P3iJcrxEwT6Qk2QvLrLI
+#      ignore-check-redirect-uri: true
+#    WECHAT_ENTERPRISE: # 企业微信
+#      client-id: wwd411c69a39ad2e54
+#      client-secret: 1wTb7hYxnpT2TUbIeHGXGo7T0odav1ic10mLdyyATOw
+#      agent-id: 1000004
+#      ignore-check-redirect-uri: true
+#    # noinspection SpringBootApplicationYaml
+#    WECHAT_MINI_APP: # 微信小程序
+#      client-id: ${wx.miniapp.appid}
+#      client-secret: ${wx.miniapp.secret}
+#      ignore-check-redirect-uri: true
+#      ignore-check-state: true # 微信小程序，不会使用到 state，所以不进行校验
+#    WECHAT_MP: # 微信公众号
+#      client-id: ${wx.mp.app-id}
+#      client-secret: ${wx.mp.secret}
+#      ignore-check-redirect-uri: true
+#  cache:
+#    type: REDIS
+#    prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
+#    timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
+
+# OSS相关配置信息
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: LTAI5tCNaNWXYGFeoR2u4rhh # 访问身份验证中用到用户标识
+    accessKeySecret: Fehe8npVyFYaQoDLo1uJwozNuS2zkV # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: syxt-aliyun-oss-bucket # oss的存储空间
+    policyExpire: 3600 # 签名有效期(S)
+    maxSize: 5000 # 上传文件大小(M)
+
+    #   需要外网地址
+    callback: http://XXXX/aliyun/oss/callback
+    dirPrefix: xhsd/book/resource/   # 上传文件夹路径前缀
 

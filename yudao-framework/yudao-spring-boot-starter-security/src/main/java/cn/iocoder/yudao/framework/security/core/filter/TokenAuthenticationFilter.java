@@ -26,7 +26,7 @@ import java.io.IOException;
  * Token 过滤器，验证 token 的有效性
  * 验证通过后，获得 {@link LoginUser} 信息，并加入到 Spring Security 上下文
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
@@ -41,6 +41,42 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     @SuppressWarnings("NullableProblems")
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
+/*
+
+        //TODO  模拟 Login 功能，方便日常开发调试
+        if (securityProperties.getMockEnable()) {
+            LoginUser loginUser = new LoginUser().setId(1L).setUserType(WebFrameworkUtils.getLoginUserType(request))
+                    .setTenantId(WebFrameworkUtils.getTenantId(request));
+            // 2. 设置当前用户
+            if (loginUser != null) {
+                SecurityFrameworkUtils.setLoginUser(loginUser, request);
+            }
+        }else{
+            String token = SecurityFrameworkUtils.obtainAuthorization(request,
+                    securityProperties.getTokenHeader(), securityProperties.getTokenParameter());
+            if (StrUtil.isNotEmpty(token)) {
+                Integer userType = WebFrameworkUtils.getLoginUserType(request);
+                try {
+                    // 1.1 基于 token 构建登录用户
+                    LoginUser loginUser = buildLoginUserByToken(token, userType);
+                    // 1.2 模拟 Login 功能，方便日常开发调试
+                    if (loginUser == null) {
+                        loginUser = mockLoginUser(request, token, userType);
+                    }
+
+                    // 2. 设置当前用户
+                    if (loginUser != null) {
+                        SecurityFrameworkUtils.setLoginUser(loginUser, request);
+                    }
+                } catch (Throwable ex) {
+                    CommonResult<?> result = globalExceptionHandler.allExceptionHandler(request, ex);
+                    ServletUtils.writeJSON(response, result);
+                    return;
+                }
+            }
+        }
+*/
+
         String token = SecurityFrameworkUtils.obtainAuthorization(request,
                 securityProperties.getTokenHeader(), securityProperties.getTokenParameter());
         if (StrUtil.isNotEmpty(token)) {

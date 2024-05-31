@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 /**
  * {@link BpmTaskCandidateInvoker} 的单元测试
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public class BpmTaskCandidateInvokerTest extends BaseMockitoUnitTest {
 

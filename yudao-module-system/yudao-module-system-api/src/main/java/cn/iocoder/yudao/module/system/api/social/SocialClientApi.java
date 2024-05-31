@@ -7,7 +7,7 @@ import cn.iocoder.yudao.module.system.enums.social.SocialTypeEnum;
 /**
  * 社交应用的 API 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface SocialClientApi {
 

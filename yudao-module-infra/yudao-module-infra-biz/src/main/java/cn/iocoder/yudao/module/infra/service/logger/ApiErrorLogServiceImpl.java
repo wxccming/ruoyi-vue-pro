@@ -20,7 +20,7 @@ import static cn.iocoder.yudao.module.infra.enums.ErrorCodeConstants.*;
 /**
  * API 错误日志 Service 实现类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Slf4j
 @Service

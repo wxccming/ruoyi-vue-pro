@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * Flowable 相关的工具方法
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public class FlowableUtils {
 

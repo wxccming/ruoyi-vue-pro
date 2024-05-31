@@ -3,7 +3,7 @@ package cn.iocoder.yudao.module.erp.dal.redis;
 /**
  * ERP Redis Key 枚举类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface RedisKeyConstants {
 

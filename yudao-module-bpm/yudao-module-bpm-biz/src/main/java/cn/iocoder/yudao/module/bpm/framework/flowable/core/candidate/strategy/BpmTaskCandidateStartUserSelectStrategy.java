@@ -20,7 +20,7 @@ import java.util.*;
 /**
  * 发起人自选 {@link BpmTaskCandidateUserStrategy} 实现类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Component
 public class BpmTaskCandidateStartUserSelectStrategy implements BpmTaskCandidateStrategy {

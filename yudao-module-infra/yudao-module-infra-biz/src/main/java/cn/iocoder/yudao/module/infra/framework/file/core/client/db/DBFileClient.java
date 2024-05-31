@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 基于 DB 存储的文件客户端的配置类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public class DBFileClient extends AbstractFileClient<DBFileClientConfig> {
 

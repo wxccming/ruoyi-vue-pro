@@ -10,7 +10,7 @@ import javax.validation.Valid;
 /**
  * 社交用户的 API 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface SocialUserApi {
 

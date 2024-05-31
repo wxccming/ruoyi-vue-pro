@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * {@link BpmCategoryServiceImpl} 的单元测试类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Import(BpmCategoryServiceImpl.class)
 public class BpmCategoryServiceImplTest extends BaseDbUnitTest {

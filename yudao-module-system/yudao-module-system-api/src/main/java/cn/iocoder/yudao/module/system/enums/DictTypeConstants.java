@@ -3,7 +3,7 @@ package cn.iocoder.yudao.module.system.enums;
 /**
  * System 字典类型的枚举类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface DictTypeConstants {
 

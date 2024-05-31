@@ -3,7 +3,7 @@ package cn.iocoder.yudao.module.bpm.framework.flowable.core.enums;
 /**
  * BPMN XML 常量信息
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface BpmnModelConstants {
 

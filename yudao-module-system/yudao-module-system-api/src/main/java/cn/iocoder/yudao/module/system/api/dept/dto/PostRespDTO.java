@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * 岗位 Response DTO
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Data
 public class PostRespDTO {

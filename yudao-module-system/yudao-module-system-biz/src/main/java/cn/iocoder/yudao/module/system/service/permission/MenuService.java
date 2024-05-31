@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 菜单 Service 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface MenuService {
 

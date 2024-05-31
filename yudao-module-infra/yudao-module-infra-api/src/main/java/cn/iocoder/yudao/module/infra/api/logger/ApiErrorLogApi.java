@@ -7,7 +7,7 @@ import javax.validation.Valid;
 /**
  * API 错误日志的 API 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface ApiErrorLogApi {
 

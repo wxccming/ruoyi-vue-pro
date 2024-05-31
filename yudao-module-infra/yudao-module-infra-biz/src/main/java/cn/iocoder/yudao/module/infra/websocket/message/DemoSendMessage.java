@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 示例：client -> server 发送消息
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Data
 public class DemoSendMessage {

@@ -15,7 +15,7 @@ public class BpmProcessInstanceRespVO {
     @Schema(description = "流程实例的编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
     private String id;
 
-    @Schema(description = "流程名称", requiredMode = Schema.RequiredMode.REQUIRED, example = "芋道")
+    @Schema(description = "流程名称", requiredMode = Schema.RequiredMode.REQUIRED )
     private String name;
 
     @Schema(description = "流程分类", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
@@ -64,7 +64,7 @@ public class BpmProcessInstanceRespVO {
 
         @Schema(description = "用户编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
         private Long id;
-        @Schema(description = "用户昵称", requiredMode = Schema.RequiredMode.REQUIRED, example = "芋艿")
+        @Schema(description = "用户昵称", requiredMode = Schema.RequiredMode.REQUIRED, example = "晟云鑫通")
         private String nickname;
 
         @Schema(description = "部门编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
@@ -81,7 +81,7 @@ public class BpmProcessInstanceRespVO {
         @Schema(description = "流程任务的编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
         private String id;
 
-        @Schema(description = "任务名称", requiredMode = Schema.RequiredMode.REQUIRED, example = "芋道")
+        @Schema(description = "任务名称", requiredMode = Schema.RequiredMode.REQUIRED )
         private String name;
 
     }

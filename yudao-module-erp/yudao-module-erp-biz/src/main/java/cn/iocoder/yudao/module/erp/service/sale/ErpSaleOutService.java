@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * ERP 销售出库 Service 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface ErpSaleOutService {
 

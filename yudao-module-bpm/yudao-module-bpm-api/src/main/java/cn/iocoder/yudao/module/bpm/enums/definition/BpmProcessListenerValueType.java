@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * BPM 流程监听器的值类型
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Getter
 @AllArgsConstructor

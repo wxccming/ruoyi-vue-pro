@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 /**
  * {@link MailAccountServiceImpl} 的单元测试类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Import(MailAccountServiceImpl.class)
 public class MailAccountServiceImplTest extends BaseDbUnitTest {

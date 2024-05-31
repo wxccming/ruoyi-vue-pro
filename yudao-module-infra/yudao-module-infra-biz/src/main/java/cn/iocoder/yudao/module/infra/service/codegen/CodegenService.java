@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * 代码生成 Service 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface CodegenService {
 

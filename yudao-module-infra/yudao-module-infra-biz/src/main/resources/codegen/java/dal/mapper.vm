@@ -44,7 +44,7 @@ import ${basePackage}.module.${table.moduleName}.controller.${sceneEnum.basePack
 /**
  * ${table.classComment} Mapper
  *
- * @author ${table.author}
+ * @author 晟云鑫通
  */
 @Mapper
 public interface ${table.className}Mapper extends BaseMapperX<${table.className}DO> {

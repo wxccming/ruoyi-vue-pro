@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * ERP 客户 Mapper
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 @Mapper
 public interface ErpCustomerMapper extends BaseMapperX<ErpCustomerDO> {

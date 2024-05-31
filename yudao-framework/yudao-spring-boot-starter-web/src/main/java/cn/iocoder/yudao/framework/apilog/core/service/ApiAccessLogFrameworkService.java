@@ -5,7 +5,7 @@ import cn.iocoder.yudao.module.infra.api.logger.dto.ApiAccessLogCreateReqDTO;
 /**
  * API 访问日志 Framework Service 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface ApiAccessLogFrameworkService {
 

@@ -3,7 +3,7 @@ package cn.iocoder.yudao.module.infra.api.file;
 /**
  * 文件 API 接口
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface FileApi {
 

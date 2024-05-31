@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 专属于 web 包的工具类
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public class WebSocketFrameworkUtils {
 

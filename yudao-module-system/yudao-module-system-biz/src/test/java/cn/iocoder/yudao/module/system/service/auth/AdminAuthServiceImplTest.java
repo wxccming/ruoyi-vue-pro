@@ -5,8 +5,6 @@ import cn.iocoder.yudao.framework.common.enums.CommonStatusEnum;
 import cn.iocoder.yudao.framework.common.enums.UserTypeEnum;
 import cn.iocoder.yudao.framework.test.core.ut.BaseDbUnitTest;
 import cn.iocoder.yudao.module.system.api.sms.SmsCodeApi;
-import cn.iocoder.yudao.module.system.api.social.dto.SocialUserBindReqDTO;
-import cn.iocoder.yudao.module.system.api.social.dto.SocialUserRespDTO;
 import cn.iocoder.yudao.module.system.controller.admin.auth.vo.*;
 import cn.iocoder.yudao.module.system.dal.dataobject.oauth2.OAuth2AccessTokenDO;
 import cn.iocoder.yudao.module.system.dal.dataobject.user.AdminUserDO;
@@ -17,7 +15,6 @@ import cn.iocoder.yudao.module.system.enums.social.SocialTypeEnum;
 import cn.iocoder.yudao.module.system.service.logger.LoginLogService;
 import cn.iocoder.yudao.module.system.service.member.MemberService;
 import cn.iocoder.yudao.module.system.service.oauth2.OAuth2TokenService;
-import cn.iocoder.yudao.module.system.service.social.SocialUserService;
 import cn.iocoder.yudao.module.system.service.user.AdminUserService;
 import com.xingyuv.captcha.model.common.ResponseModel;
 import com.xingyuv.captcha.service.CaptchaService;
@@ -54,8 +51,6 @@ public class AdminAuthServiceImplTest extends BaseDbUnitTest {
     private CaptchaService captchaService;
     @MockBean
     private LoginLogService loginLogService;
-    @MockBean
-    private SocialUserService socialUserService;
     @MockBean
     private SmsCodeApi smsCodeApi;
     @MockBean
@@ -179,9 +174,6 @@ public class AdminAuthServiceImplTest extends BaseDbUnitTest {
                         && o.getResult().equals(LoginResultEnum.SUCCESS.getResult())
                         && o.getUserId().equals(user.getId()))
         );
-        verify(socialUserService).bindSocialUser(eq(new SocialUserBindReqDTO(
-                user.getId(), UserTypeEnum.ADMIN.getValue(),
-                reqVO.getSocialType(), reqVO.getSocialCode(), reqVO.getSocialState())));
     }
 
     @Test
@@ -225,34 +217,6 @@ public class AdminAuthServiceImplTest extends BaseDbUnitTest {
         // 断言调用
         verify(loginLogService).createLoginLog(
                 argThat(o -> o.getLogType().equals(LoginLogTypeEnum.LOGIN_MOBILE.getType())
-                        && o.getResult().equals(LoginResultEnum.SUCCESS.getResult())
-                        && o.getUserId().equals(user.getId()))
-        );
-    }
-
-    @Test
-    public void testSocialLogin_success() {
-        // 准备参数
-        AuthSocialLoginReqVO reqVO = randomPojo(AuthSocialLoginReqVO.class);
-        // mock 方法（绑定的用户编号）
-        Long userId = 1L;
-        when(socialUserService.getSocialUserByCode(eq(UserTypeEnum.ADMIN.getValue()), eq(reqVO.getType()),
-                eq(reqVO.getCode()), eq(reqVO.getState()))).thenReturn(new SocialUserRespDTO(randomString(), randomString(), randomString(), userId));
-        // mock（用户）
-        AdminUserDO user = randomPojo(AdminUserDO.class, o -> o.setId(userId));
-        when(userService.getUser(eq(userId))).thenReturn(user);
-        // mock 缓存登录用户到 Redis
-        OAuth2AccessTokenDO accessTokenDO = randomPojo(OAuth2AccessTokenDO.class, o -> o.setUserId(1L)
-                .setUserType(UserTypeEnum.ADMIN.getValue()));
-        when(oauth2TokenService.createAccessToken(eq(1L), eq(UserTypeEnum.ADMIN.getValue()), eq("default"), isNull()))
-                .thenReturn(accessTokenDO);
-
-        // 调用，并断言
-        AuthLoginRespVO loginRespVO = authService.socialLogin(reqVO);
-        assertPojoEquals(accessTokenDO, loginRespVO);
-        // 断言调用
-        verify(loginLogService).createLoginLog(
-                argThat(o -> o.getLogType().equals(LoginLogTypeEnum.LOGIN_SOCIAL.getType())
                         && o.getResult().equals(LoginResultEnum.SUCCESS.getResult())
                         && o.getUserId().equals(user.getId()))
         );

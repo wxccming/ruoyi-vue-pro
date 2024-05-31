@@ -68,4 +68,17 @@ public interface ErrorCodeConstants {
     ErrorCode DEMO03_GRADE_NOT_EXISTS = new ErrorCode(1_001_201_008, "学生班级不存在");
     ErrorCode DEMO03_GRADE_EXISTS = new ErrorCode(1_001_201_009, "学生班级已存在");
 
+    ErrorCode SOURCE_INFO_NOT_EXISTS = new ErrorCode(1_001_202_001, "资源信息不存在");
+
+    ErrorCode BOOK_CHAPTER_NOT_EXISTS = new ErrorCode(1_001_202_002, "图书章节不存在");
+
+    ErrorCode BOOK_INFO_NOT_EXISTS = new ErrorCode(1_001_202_003, "图书信息不存在");
+
+    ErrorCode BOOK_QTCODE_INFO_NOT_EXISTS = new ErrorCode(1_001_202_004, "图书二维码信息不存在");
+
+    ErrorCode BOOK_QTCODE_ITEM_NOT_EXISTS = new ErrorCode(1_001_202_005, "二维码项目不存在");
+
+    ErrorCode BOOK_QTCODE_SOURCE_NOT_EXISTS = new ErrorCode(1_001_202_006, "二维码资源不存在");
+    ErrorCode BOOK_SOURCE_SIGN_FAIL = new ErrorCode(1_001_203_001, "签名生成失败");
 }
+

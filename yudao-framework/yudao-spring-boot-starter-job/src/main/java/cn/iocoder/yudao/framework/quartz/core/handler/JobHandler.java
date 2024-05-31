@@ -3,7 +3,7 @@ package cn.iocoder.yudao.framework.quartz.core.handler;
 /**
  * 任务处理器
  *
- * @author 芋道源码
+ * @author 晟云鑫通
  */
 public interface JobHandler {
 
