@@ -39,7 +39,7 @@ public class DatabaseTableServiceImplTest extends BaseDbUnitTest {
 
         // 调用
         List<TableInfo> tables = databaseTableService.getTableList(dataSourceConfigId,
-                "config", "参数");
+                "config", "_config");
         // 断言
         assertEquals(1, tables.size());
         assertTableInfo(tables.get(0));
@@ -63,13 +63,13 @@ public class DatabaseTableServiceImplTest extends BaseDbUnitTest {
 
     private void assertTableInfo(TableInfo tableInfo) {
         assertEquals("infra_config", tableInfo.getName());
-        assertEquals("参数配置表", tableInfo.getComment());
+        assertEquals("system_config", tableInfo.getComment());
         assertEquals(13, tableInfo.getFields().size());
         // id 字段
         TableField idField = tableInfo.getFields().get(0);
         assertEquals("id", idField.getName());
         assertEquals(JdbcType.BIGINT, idField.getMetaInfo().getJdbcType());
-        assertEquals("编号", idField.getComment());
+        assertEquals("user_id", idField.getComment());
         assertFalse(idField.getMetaInfo().isNullable());
         assertTrue(idField.isKeyFlag());
         assertTrue(idField.isKeyIdentityFlag());
@@ -79,7 +79,7 @@ public class DatabaseTableServiceImplTest extends BaseDbUnitTest {
         TableField nameField = tableInfo.getFields().get(3);
         assertEquals("name", nameField.getName());
         assertEquals(JdbcType.VARCHAR, nameField.getMetaInfo().getJdbcType());
-        assertEquals("名字", nameField.getComment());
+        assertEquals("user_name", nameField.getComment());
         assertFalse(nameField.getMetaInfo().isNullable());
         assertFalse(nameField.isKeyFlag());
         assertFalse(nameField.isKeyIdentityFlag());
